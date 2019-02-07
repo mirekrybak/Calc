@@ -13,15 +13,16 @@ import java.util.ResourceBundle;
 public class PrimaryPaneController implements Initializable {
 
     @FXML
+    PositionPaneController positionPaneController;
+
+    @FXML
+    BonusPaneController bonusPaneController;
+
+    @FXML
     private Button exitButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //PositionPaneController position = new PositionPaneController();
-        //BonusPaneController bonus = new BonusPaneController();
-
-        PositionPaneController position = new PositionPaneController();
-        BonusPaneController bonus = new BonusPaneController();
 
         exitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -31,7 +32,36 @@ public class PrimaryPaneController implements Initializable {
             }
         });
 
+        bonusPaneController.getBonusTextField().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String text = bonusPaneController.getBonusTextField().getText();
+                String[] numbers = text.split("\\.");
+                double bonus = 0;
+
+                if (text.length() > 0) {
+                    try {
+                        bonus = Double.parseDouble(text);
+                    } catch (NumberFormatException e) {
+                        bonusPaneController.getBonusTextField().clear();
+                        bonusPaneController.getBonusTextField().setText(text.substring(0, text.length() - 1));
+                        bonusPaneController.getBonusTextField().positionCaret(text.length());
+                    }
+
+                    System.err.println(bonus);
+                }
+            }
+        });
+
         //String text = position.getPayment1TextField().getText();
+
+//        payTextField2.setOnKeyReleased(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//
+//
+//            }
+//        });
 
     }
 }

@@ -66,6 +66,6 @@ public class BonusPaneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("--->        Init BonusPaneController ...");
+        System.out.println("        Init BonusPaneController successful.");
     }
 }

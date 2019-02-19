@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
+import pl.calc.main.FieldCalculate;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PrimaryPaneController implements Initializable {
+
 
     @FXML
     PositionPaneController positionPaneController;
@@ -20,6 +22,8 @@ public class PrimaryPaneController implements Initializable {
 
     @FXML
     private Button exitButton;
+
+    FieldCalculate calculate = new FieldCalculate();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,33 +39,40 @@ public class PrimaryPaneController implements Initializable {
         bonusPaneController.getBonusTextField().setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                String text = bonusPaneController.getBonusTextField().getText();
-                String[] numbers = text.split("\\.");
-                double bonus = 0;
+                String text = calculate.doubleFormatVerify(bonusPaneController.getBonusTextField().getText());      // 1.xxxx   x - number
+                System.out.println(text);
 
-                if (text.length() > 0) {
-                    try {
-                        bonus = Double.parseDouble(text);
-                    } catch (NumberFormatException e) {
-                        bonusPaneController.getBonusTextField().clear();
-                        bonusPaneController.getBonusTextField().setText(text.substring(0, text.length() - 1));
-                        bonusPaneController.getBonusTextField().positionCaret(text.length());
-                    }
-
-                    System.err.println(bonus);
-                }
+                bonusPaneController.getBonusTextField().clear();
+                bonusPaneController.getBonusTextField().setText(text);
+                bonusPaneController.getBonusTextField().positionCaret(text.length());
             }
         });
 
-        //String text = position.getPayment1TextField().getText();
+        bonusPaneController.getPaymentTextField().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String text = calculate.intFormatVerify(bonusPaneController.getPaymentTextField().getText());
 
-//        payTextField2.setOnKeyReleased(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//
-//
-//            }
-//        });
+                bonusPaneController.getPaymentTextField().clear();
+                bonusPaneController.getPaymentTextField().setText(text);
+                bonusPaneController.getPaymentTextField().positionCaret(text.length());
+            }
+        });
+
+        bonusPaneController.getPointsTextField().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String text = calculate.intFormatVerify(bonusPaneController.getPointsTextField().getText());
+
+                bonusPaneController.getPointsTextField().clear();
+                bonusPaneController.getPointsTextField().setText(text);
+                bonusPaneController.getPointsTextField().positionCaret(text.length());
+            }
+        });
 
     }
+
+
+
+
 }

@@ -8,30 +8,27 @@ import java.util.regex.Pattern;
 
 public class FieldCalculate {
 
-    public String doubleFormatVerify(String text) {
+    public void checkDoubleValue(TextField textField) {
+        String text = textField.getText();                   //      range 1.0 - 1.999
         if (text.length() < 2) {
             text = "1.";
         }
 
-        String txt = text;
         String regex = "[1]{1}[\\.]{1}[0-9]*";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
         if (text.length() > 0) {
             if (!matcher.matches() || text.length() > 5) {
-                txt = text.substring(0, text.length() - 1);
-        //        System.err.println(txt + "    <--- WRONG !!!");                 //  error information
+                text = text.substring(0, text.length() - 1);
             }
         }
 
-        //System.out.println(text + "   " + txt);                                 //  print text, txt variables
-
-        return txt;
+        printTextField(text, textField);
     }
 
-    public String intFormatVerify(String text) {
-        String txt = text;
+    public void checkIntegerValue(TextField textField) {
+        String text = textField.getText();
         String regex = "[1-9]{1}[0-9]*";
 
         Pattern pattern = Pattern.compile(regex);
@@ -39,14 +36,18 @@ public class FieldCalculate {
 
         if (text.length() > 0) {
             if (!matcher.matches() || text.length() > 6) {
-                txt = text.substring(0, text.length() - 1);
-            //    System.err.println(txt + "    <--- WRONG !!!");                 //  error information
+                text = text.substring(0, text.length() - 1);
             }
         }
+        printTextField(text, textField);
+    }
 
-        //System.out.println(text + "   " + txt);                                 //  print text, txt variables
-
-        return txt;
+    public static void printTextField(String text, TextField textField) {
+        if (text.length() > 1) {
+            textField.clear();
+            textField.setText(text);
+            textField.positionCaret(text.length());
+        }
     }
 
     public BigDecimal value(String text) {

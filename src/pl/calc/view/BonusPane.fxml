@@ -45,7 +45,7 @@
                <font>
                   <Font size="11.0" />
                </font></Label>
-            <TextField fx:id="profit19TextField" editable="false">
+            <TextField fx:id="profit19TextField" alignment="CENTER" editable="false">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" />
                </VBox.margin></TextField>
@@ -60,7 +60,7 @@
                <font>
                   <Font size="11.0" />
                </font></Label>
-            <TextField fx:id="profitTextField" editable="false">
+            <TextField fx:id="profitTextField" alignment="CENTER" editable="false">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" />
                </VBox.margin></TextField>

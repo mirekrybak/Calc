@@ -3,12 +3,19 @@ package pl.calc.main;
 import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FieldCalculate {
 
-    public void checkDoubleValue(TextField textField) {
+    public static void printTextField(TextField textField, String text) {
+        textField.clear();
+        textField.setText(text);
+        textField.positionCaret(text.length());
+    }
+
+    public void doubleValueVerify(TextField textField) {
         String text = textField.getText();                   //      range 1.0 - 1.999
         if (text.length() < 2) {
             text = "1.";
@@ -18,51 +25,62 @@ public class FieldCalculate {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
-        if (text.length() > 0) {
-            if (!matcher.matches() || text.length() > 5) {
-                text = text.substring(0, text.length() - 1);
-            }
+        if (!matcher.matches() || text.length() > 5) {
+            text = text.substring(0, text.length() - 1);
         }
 
-        printTextField(text, textField);
+        printTextField(textField, text);
     }
 
-    public void checkIntegerValue(TextField textField) {
+    public void integerValueVerify(TextField textField) {
         String text = textField.getText();
         String regex = "[1-9]{1}[0-9]*";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
-        if (text.length() > 0) {
-            if (!matcher.matches() || text.length() > 6) {
-                text = text.substring(0, text.length() - 1);
-            }
+        if (text.length() > 0 && (!matcher.matches() || text.length() > 6)) {
+            text = text.substring(0, text.length() - 1);
         }
-        printTextField(text, textField);
+
+        printTextField(textField, text);
     }
 
-    public static void printTextField(String text, TextField textField) {
-        if (text.length() > 1) {
-            textField.clear();
-            textField.setText(text);
-            textField.positionCaret(text.length());
-        }
+    public String factor19(TextField textField, String text) {
+        String profit19 = String.valueOf(
+                val(text).multiply(val(textField.getText())).setScale(0, RoundingMode.HALF_UP));
+        return profit19;
     }
 
-    public BigDecimal value(String text) {
-        if (text.endsWith(".")) {
+    public String bonusFactor(TextField payTextField, TextField bonusTextField) {
+        String profit = String.valueOf(
+                val(payTextField.getText()).multiply(val(bonusTextField.getText())).setScale(0, RoundingMode.HALF_UP));
+        return profit;
+    }
+
+    public static BigDecimal val(String text) {
+        if (text.endsWith(".") || text.length() < 1) {
             text = text.concat("0");
         }
         BigDecimal txt = new BigDecimal(text);
-        System.out.println(txt + "  as BigDecimal");
-
         return txt;
     }
 
-    public String countProfitValue(TextField field) {
 
+//    public BigDecimal value(String text) {
+//        if (text.endsWith(".") || text.length() < 1) {
+//            text = text.concat("0");
+//        }
+//        BigDecimal txt = new BigDecimal(text);
+//        return txt;
+//    }
 
-        return field.getText();
-    }
+//    public BigDecimal multiply19(TextField textField) {
+//        BigDecimal value = new BigDecimal("0");
+//        if (textField.getText().length() > 0) {
+//            value = new BigDecimal(textField.getText()).multiply(BigDecimal.valueOf(1.9)).setScale(0, RoundingMode.HALF_UP);
+//        }
+//        return  value;
+//    }
+
 }

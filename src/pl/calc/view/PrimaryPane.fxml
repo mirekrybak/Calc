@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="344.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.calc.controller.PrimaryPaneController">
+<VBox prefHeight="344.0" prefWidth="550.0" stylesheets="@css/PrimaryPane.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.calc.controller.PrimaryPaneController">
     <children>
         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="F o r g e   o f   E m p i r e s" VBox.vgrow="ALWAYS">
             <font>
@@ -32,7 +32,7 @@
             </effect>
         </Label>
 
-        <fx:include fx:id="bonusPane" source="BonusPane.fxml" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+        <fx:include fx:id="bonusPane" maxWidth="1.7976931348623157E308" source="BonusPane.fxml" VBox.vgrow="ALWAYS" />
         <fx:include fx:id="positionPane" source="PositionPane.fxml" VBox.vgrow="ALWAYS" />
 
         <Button fx:id="exitButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="E X I T" VBox.vgrow="ALWAYS">

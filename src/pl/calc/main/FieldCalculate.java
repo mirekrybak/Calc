@@ -65,22 +65,4 @@ public class FieldCalculate {
         BigDecimal txt = new BigDecimal(text);
         return txt;
     }
-
-
-//    public BigDecimal value(String text) {
-//        if (text.endsWith(".") || text.length() < 1) {
-//            text = text.concat("0");
-//        }
-//        BigDecimal txt = new BigDecimal(text);
-//        return txt;
-//    }
-
-//    public BigDecimal multiply19(TextField textField) {
-//        BigDecimal value = new BigDecimal("0");
-//        if (textField.getText().length() > 0) {
-//            value = new BigDecimal(textField.getText()).multiply(BigDecimal.valueOf(1.9)).setScale(0, RoundingMode.HALF_UP);
-//        }
-//        return  value;
-//    }
-
 }

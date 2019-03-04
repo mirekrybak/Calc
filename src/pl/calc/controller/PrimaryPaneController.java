@@ -10,7 +10,6 @@ import javafx.scene.paint.Paint;
 import pl.calc.main.FieldCalculate;
 
 import java.awt.*;
-import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,26 +45,27 @@ public class PrimaryPaneController implements Initializable {
                 String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField(), "1.9");
                 String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(), bonusPaneController.getBonusTextField());
 
-//                String profit = String.valueOf(
-//                        (calculate.value(bonusPaneController.getBonusTextField().getText()).multiply(
-//                                calculate.value(bonusPaneController.getPaymentTextField().getText()))).setScale(0, RoundingMode.HALF_UP));
-//                String profit19 = String.valueOf(
-//                        (calculate.value("1.9").multiply(
-//                                calculate.value(bonusPaneController.getPaymentTextField().getText()))).setScale(0,RoundingMode.HALF_UP));
-//
-//                String line = String.valueOf(calculate.multiply19(bonusPaneController.getPaymentTextField()));
-//                System.out.println(line);
                 //  DOPISAĆ WYLICZENIA bonusFactor DLA PROFITtEXTfIELD
 
                 FieldCalculate.printTextField(bonusPaneController.getProfitTextField(), profit);
                 FieldCalculate.printTextField(bonusPaneController.getProfit19TextField(), profit19);
 
-                FieldCalculate.printTextField(positionPaneController.getProfit1TextField(), profit);
-                FieldCalculate.printTextField(positionPaneController.getProfit2TextField(), profit);
-                FieldCalculate.printTextField(positionPaneController.getProfit3TextField(), profit);
-                FieldCalculate.printTextField(positionPaneController.getProfit4TextField(), profit);
-                FieldCalculate.printTextField(positionPaneController.getProfit5TextField(), profit);
+                String profit1 = calculate.bonusFactor(positionPaneController.getPayment1TextField(),
+                        bonusPaneController.getBonusTextField());
+                String profit2 = calculate.bonusFactor(positionPaneController.getPayment2TextField(),
+                        bonusPaneController.getBonusTextField());
+                String profit3 = calculate.bonusFactor(positionPaneController.getPayment3TextField(),
+                        bonusPaneController.getBonusTextField());
+                String profit4 = calculate.bonusFactor(positionPaneController.getPayment4TextField(),
+                        bonusPaneController.getBonusTextField());
+                String profit5 = calculate.bonusFactor(positionPaneController.getPayment5TextField(),
+                        bonusPaneController.getBonusTextField());
 
+                FieldCalculate.printTextField(positionPaneController.getProfit1TextField(), profit1);
+                FieldCalculate.printTextField(positionPaneController.getProfit2TextField(), profit2);
+                FieldCalculate.printTextField(positionPaneController.getProfit3TextField(), profit3);
+                FieldCalculate.printTextField(positionPaneController.getProfit4TextField(), profit4);
+                FieldCalculate.printTextField(positionPaneController.getProfit5TextField(), profit5);
             }
         });
 
@@ -76,17 +76,6 @@ public class PrimaryPaneController implements Initializable {
 
                 String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField(), "1.9");
                 String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(), bonusPaneController.getBonusTextField());
-
-//                String profit = String.valueOf(
-//                        calculate.value(bonusPaneController.getBonusTextField().getText()).multiply(
-//                                calculate.value(bonusPaneController.getPaymentTextField().getText())));
-//                String profit19 = String.valueOf(
-//                        calculate.value("1.9").multiply(
-//                                calculate.value(bonusPaneController.getPaymentTextField().getText())));
-
-//                String line = String.valueOf(calculate.multiply19(bonusPaneController.getPaymentTextField()));
-//                System.err.println(profit);
-//                System.err.println(profit19);
 
                 FieldCalculate.printTextField(bonusPaneController.getProfitTextField(), profit);
                 FieldCalculate.printTextField(bonusPaneController.getProfit19TextField(), profit19);

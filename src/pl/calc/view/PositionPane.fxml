@@ -88,7 +88,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="PAYMENT" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="PAYMENT (1.9)" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="11.0" />
                </font>
@@ -181,48 +181,7 @@
             </Label>
          </children>
          <HBox.margin>
-            <Insets left="5.0" right="5.0" />
-         </HBox.margin>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="1.9" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font size="11.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding></Label>
-            <TextField fx:id="points1TextField" alignment="CENTER" editable="false">
-               <VBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </VBox.margin></TextField>
-            <TextField fx:id="points2TextField" alignment="CENTER" editable="false">
-               <VBox.margin>
-                  <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="points3TextField" alignment="CENTER" editable="false">
-               <VBox.margin>
-                  <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="points4TextField" alignment="CENTER" editable="false">
-               <VBox.margin>
-                  <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="points5TextField" alignment="CENTER" editable="false">
-               <VBox.margin>
-                  <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <HBox.margin>
-            <Insets left="5.0" right="5.0" />
+            <Insets left="5.0" right="115.0" />
          </HBox.margin>
       </VBox>
    </children>

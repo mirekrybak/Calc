@@ -1,13 +1,9 @@
 package pl.calc.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class PositionPaneController implements Initializable {
+public class PositionPaneController {
 
     @FXML
     private TextField payment1TextField;
@@ -41,21 +37,6 @@ public class PositionPaneController implements Initializable {
 
     @FXML
     private TextField profit5TextField;
-
-    @FXML
-    private TextField points1TextField;
-
-    @FXML
-    private TextField points2TextField;
-
-    @FXML
-    private TextField points3TextField;
-
-    @FXML
-    private TextField points4TextField;
-
-    @FXML
-    private TextField points5TextField;
 
 
     public TextField getPayment1TextField() {
@@ -102,28 +83,4 @@ public class PositionPaneController implements Initializable {
         return profit5TextField;
     }
 
-    public TextField getPoints1TextField() {
-        return points1TextField;
-    }
-
-    public TextField getPoints2TextField() {
-        return points2TextField;
-    }
-
-    public TextField getPoints3TextField() {
-        return points3TextField;
-    }
-
-    public TextField getPoints4TextField() {
-        return points4TextField;
-    }
-
-    public TextField getPoints5TextField() {
-        return points5TextField;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("--->        Init PositionPaneController ...");
-    }
 }

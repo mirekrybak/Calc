@@ -1,13 +1,9 @@
 package pl.calc.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class BonusPaneController implements Initializable {
+public class BonusPaneController {
 
     @FXML
     private TextField bonusTextField;
@@ -64,8 +60,4 @@ public class BonusPaneController implements Initializable {
         this.pointsTextField = pointsTextField;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("        Init BonusPaneController successful.");
-    }
 }

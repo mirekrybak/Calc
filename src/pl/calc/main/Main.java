@@ -14,6 +14,11 @@ public class Main extends Application {
         primaryStage.setTitle("FoE Calc");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(event -> {
+            primaryStage.setIconified(true);
+            event.consume();
+        });
     }
 
 

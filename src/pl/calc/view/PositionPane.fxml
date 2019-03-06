@@ -31,7 +31,7 @@
                   <Font size="11.0" />
                </font>
                <VBox.margin>
-                  <Insets top="4.0" />
+                  <Insets bottom="2.0" top="5.0" />
                </VBox.margin>
                <padding>
                   <Insets right="7.0" />
@@ -42,7 +42,7 @@
                   <Font size="11.0" />
                </font>
                <VBox.margin>
-                  <Insets top="14.0" />
+                  <Insets bottom="1.0" top="12.0" />
                </VBox.margin>
                <padding>
                   <Insets right="7.0" />
@@ -53,7 +53,7 @@
                   <Font size="11.0" />
                </font>
                <VBox.margin>
-                  <Insets top="14.0" />
+                  <Insets bottom="1.0" top="14.0" />
                </VBox.margin>
                <padding>
                   <Insets right="7.0" />
@@ -64,7 +64,7 @@
                   <Font size="11.0" />
                </font>
                <VBox.margin>
-                  <Insets top="14.0" />
+                  <Insets bottom="1.0" top="14.0" />
                </VBox.margin>
                <padding>
                   <Insets right="7.0" />
@@ -98,31 +98,31 @@
                <padding>
                   <Insets bottom="5.0" />
                </padding></Label>
-            <TextField fx:id="payment1TextField" alignment="CENTER">
+            <TextField id="text-field-1" fx:id="payment1TextField" alignment="CENTER">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" />
+                  <Insets bottom="3.0" left="5.0" right="5.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="payment2TextField" alignment="CENTER">
+            <TextField id="text-field-2" fx:id="payment2TextField" alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="payment3TextField" alignment="CENTER">
+            <TextField id="text-field-3" fx:id="payment3TextField" alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="payment4TextField" alignment="CENTER">
+            <TextField id="text-field-4" fx:id="payment4TextField" alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="payment5TextField" alignment="CENTER">
+            <TextField id="text-field-5" fx:id="payment5TextField" alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="restTextField" alignment="CENTER">
+            <TextField id="text-field-6" fx:id="restTextField" alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
@@ -146,7 +146,7 @@
                </padding></Label>
             <TextField fx:id="profit1TextField" alignment="CENTER" editable="false">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" />
+                  <Insets bottom="3.0" left="5.0" right="5.0" />
                </VBox.margin></TextField>
             <TextField fx:id="profit2TextField" alignment="CENTER" editable="false">
                <VBox.margin>
@@ -168,7 +168,7 @@
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
             </TextField>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="REST OF POINTS">
+            <Label id="rest-of-points-label" alignment="CENTER" maxWidth="1.7976931348623157E308" text="REST OF POINTS">
                <font>
                   <Font size="11.0" />
                </font>

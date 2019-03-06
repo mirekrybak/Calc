@@ -6,10 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Paint;
 import pl.calc.main.FieldCalculate;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -86,8 +84,7 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(bonusPaneController.getPointsTextField());
 
-                Paint red = Paint.valueOf(Integer.toHexString(Color.LIGHT_GRAY.hashCode()));
-                bonusPaneController.getPointsTextField().setStyle("-fx-background-color: #" + red.toString().substring(2));
+                bonusPaneController.getPointsTextField().setStyle("-fx-background-color: #65ff00");
             }
         });
 

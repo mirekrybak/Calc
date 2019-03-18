@@ -26,7 +26,7 @@ public class FieldCalculate {
         Matcher matcher = pattern.matcher(text);
 
         if (!matcher.matches() || text.length() > 5) {
-            text = text.substring(0, text.length() - 1);
+            text = trimLastChar(text);
         }
 
         printTextField(textField, text);
@@ -40,22 +40,72 @@ public class FieldCalculate {
         Matcher matcher = pattern.matcher(text);
 
         if (text.length() > 0 && (!matcher.matches() || text.length() > 6)) {
-            text = text.substring(0, text.length() - 1);
+            text = trimLastChar(text);
         }
 
         printTextField(textField, text);
     }
 
+    public static String trimLastChar(String text) {
+        String txt = text.substring(0, text.length() - 1);
+        return txt;
+    }
+
     public String factor19(TextField textField, String text) {
         String profit19 = String.valueOf(
-                val(text).multiply(val(textField.getText())).setScale(0, RoundingMode.HALF_UP));
+                val(text).multiply(val(textField.getText()))
+                        .setScale(0, RoundingMode.HALF_UP));
         return profit19;
     }
 
-    public String bonusFactor(TextField payTextField, TextField bonusTextField) {
-        String profit = String.valueOf(
-                val(payTextField.getText()).multiply(val(bonusTextField.getText())).setScale(0, RoundingMode.HALF_UP));
+    public String bonusFactor(TextField payTextField, TextField bonusTextField, boolean positionPane) {
+        String profit;
+
+        if (!positionPane) {
+            profit = String.valueOf(
+                    val(bonusTextField.getText()).multiply(val(payTextField.getText()))
+                            .setScale(0, RoundingMode.HALF_UP));
+        } else {
+            profit = String.valueOf(val(payTextField.getText())
+                    .multiply(val(bonusTextField.getText()))
+                    .divide(val("1.9"), RoundingMode.HALF_EVEN)
+                    .setScale(0, RoundingMode.HALF_UP)
+                    .subtract(val(payTextField.getText())));
+        }
+
         return profit;
+    }
+
+    public boolean check(String[] pays, TextField points, TextField pay) {
+        int value = 0;
+        int maxPoints = 0;
+        try {
+            maxPoints = parseToInt(points.getText());
+            for (String l : pays) {
+                value =+ parseToInt(l);
+                System.out.println(maxPoints + "\t\t" + value);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("===");
+        }
+
+        if ((maxPoints/2) > (value + parseToInt(pay.getText()))) {
+            System.out.println("=== > " + (maxPoints/2) + "   <   " + (value + parseToInt(pay.getText())));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static int parseToInt(String text) {
+        int value;
+        try {
+            value = Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            value = 0;
+        }
+
+        return value;
     }
 
     public static BigDecimal val(String text) {

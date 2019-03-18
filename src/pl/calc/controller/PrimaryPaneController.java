@@ -23,9 +23,15 @@ public class PrimaryPaneController implements Initializable {
     private Button exitButton;
 
     FieldCalculate calculate = new FieldCalculate();
+    String[] pays = new String[6];
+    private boolean enough;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        for (int i = 0; i < pays.length; i++) {
+            pays[i] = "0";
+        }
 
         exitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -41,21 +47,22 @@ public class PrimaryPaneController implements Initializable {
                 calculate.doubleValueVerify(bonusPaneController.getBonusTextField());
 
                 String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField(), "1.9");
-                String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(), bonusPaneController.getBonusTextField());
+                String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(),
+                        bonusPaneController.getBonusTextField(),false);
 
                 FieldCalculate.printTextField(bonusPaneController.getProfitTextField(), profit);
                 FieldCalculate.printTextField(bonusPaneController.getProfit19TextField(), profit19);
 
                 String profit1 = calculate.bonusFactor(positionPaneController.getPayment1TextField(),
-                        bonusPaneController.getBonusTextField());
+                        bonusPaneController.getBonusTextField(),true);
                 String profit2 = calculate.bonusFactor(positionPaneController.getPayment2TextField(),
-                        bonusPaneController.getBonusTextField());
+                        bonusPaneController.getBonusTextField(),true);
                 String profit3 = calculate.bonusFactor(positionPaneController.getPayment3TextField(),
-                        bonusPaneController.getBonusTextField());
+                        bonusPaneController.getBonusTextField(),true);
                 String profit4 = calculate.bonusFactor(positionPaneController.getPayment4TextField(),
-                        bonusPaneController.getBonusTextField());
+                        bonusPaneController.getBonusTextField(),true);
                 String profit5 = calculate.bonusFactor(positionPaneController.getPayment5TextField(),
-                        bonusPaneController.getBonusTextField());
+                        bonusPaneController.getBonusTextField(),true);
 
                 FieldCalculate.printTextField(positionPaneController.getProfit1TextField(), profit1);
                 FieldCalculate.printTextField(positionPaneController.getProfit2TextField(), profit2);
@@ -71,7 +78,8 @@ public class PrimaryPaneController implements Initializable {
                 calculate.integerValueVerify(bonusPaneController.getPaymentTextField());
 
                 String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField(), "1.9");
-                String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(), bonusPaneController.getBonusTextField());
+                String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(),
+                        bonusPaneController.getBonusTextField(), false);
 
                 FieldCalculate.printTextField(bonusPaneController.getProfitTextField(), profit);
                 FieldCalculate.printTextField(bonusPaneController.getProfit19TextField(), profit19);
@@ -88,22 +96,33 @@ public class PrimaryPaneController implements Initializable {
             }
         });
 
-
-
         positionPaneController.getPayment1TextField().setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment1TextField());
+                pays[1] = positionPaneController.getPayment1TextField().getText();
 
                 String profit = calculate.bonusFactor(
-                        positionPaneController.getPayment1TextField(), bonusPaneController.getBonusTextField());
+                        positionPaneController.getPayment1TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit1TextField(), profit);
 
-//                if (Integer.parseInt(profit19)*2 >= Integer.parseInt(bonusPaneController.getPointsTextField().getText())) {
-//                    System.out.println(Integer.parseInt(profit19)*2 + "     O K   ! ! !     " + Integer.parseInt(bonusPaneController.getPointsTextField().getText()));
-//                } else {
-//                    System.out.println("To za mało !!!");
-//                }
+//                enough = calculate.checkPoints(positionPaneController.getPayment1TextField(),
+//                        positionPaneController.getPayment2TextField(),
+//                        positionPaneController.getPayment3TextField(),
+//                        positionPaneController.getPayment4TextField(),
+//                        positionPaneController.getPayment5TextField(),
+//                        bonusPaneController.getPaymentTextField());
+
+                enough = calculate.check(pays,
+                        bonusPaneController.getPointsTextField(),
+                        positionPaneController.getPayment1TextField());
+
+                if (enough) {
+                    positionPaneController.getPayment1TextField().setStyle("-fx-background-color: #65ff00");
+                } else {
+                    positionPaneController.getPayment1TextField().setStyle("-fx-background-color: #ff321e");
+                }
+
             }
         });
 
@@ -113,7 +132,7 @@ public class PrimaryPaneController implements Initializable {
                 calculate.integerValueVerify(positionPaneController.getPayment2TextField());
 
                 String profit = calculate.bonusFactor(
-                        positionPaneController.getPayment2TextField(), bonusPaneController.getBonusTextField());
+                        positionPaneController.getPayment2TextField(), bonusPaneController.getBonusTextField(),true);
                 FieldCalculate.printTextField(positionPaneController.getProfit2TextField(), profit);
 
 //                if (Integer.parseInt(profit19)*2 >= Integer.parseInt(bonusPaneController.getPointsTextField().getText())) {
@@ -130,7 +149,7 @@ public class PrimaryPaneController implements Initializable {
                 calculate.integerValueVerify(positionPaneController.getPayment3TextField());
 
                 String profit = calculate.bonusFactor(
-                        positionPaneController.getPayment3TextField(), bonusPaneController.getBonusTextField());
+                        positionPaneController.getPayment3TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit3TextField(), profit);
             }
         });
@@ -141,7 +160,7 @@ public class PrimaryPaneController implements Initializable {
                 calculate.integerValueVerify(positionPaneController.getPayment4TextField());
 
                 String profit = calculate.bonusFactor(
-                        positionPaneController.getPayment4TextField(), bonusPaneController.getBonusTextField());
+                        positionPaneController.getPayment4TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit4TextField(), profit);
             }
         });
@@ -152,7 +171,7 @@ public class PrimaryPaneController implements Initializable {
                 calculate.integerValueVerify(positionPaneController.getPayment5TextField());
 
                 String profit = calculate.bonusFactor(
-                        positionPaneController.getPayment5TextField(), bonusPaneController.getBonusTextField());
+                        positionPaneController.getPayment5TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit5TextField(), profit);
             }
         });

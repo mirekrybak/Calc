@@ -130,16 +130,21 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment2TextField());
+                pays[2] = positionPaneController.getPayment2TextField().getText();
 
                 String profit = calculate.bonusFactor(
                         positionPaneController.getPayment2TextField(), bonusPaneController.getBonusTextField(),true);
                 FieldCalculate.printTextField(positionPaneController.getProfit2TextField(), profit);
 
-//                if (Integer.parseInt(profit19)*2 >= Integer.parseInt(bonusPaneController.getPointsTextField().getText())) {
-//                    System.out.println(Integer.parseInt(profit19)*2 + "     O K   ! ! !     " + Integer.parseInt(bonusPaneController.getPointsTextField().getText()));
-//                } else {
-//                    System.out.println("To za mało !!!");
-//                }
+                enough = calculate.check(pays,
+                        bonusPaneController.getPointsTextField(),
+                        positionPaneController.getPayment2TextField());
+
+                if (enough) {
+                    positionPaneController.getPayment2TextField().setStyle("-fx-background-color: #65ff00");
+                } else {
+                    positionPaneController.getPayment2TextField().setStyle("-fx-background-color: #ff321e");
+                }
             }
         });
 
@@ -147,10 +152,21 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment3TextField());
+                pays[3] = positionPaneController.getPayment3TextField().getText();
 
                 String profit = calculate.bonusFactor(
                         positionPaneController.getPayment3TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit3TextField(), profit);
+
+                enough = calculate.check(pays,
+                        bonusPaneController.getPointsTextField(),
+                        positionPaneController.getPayment3TextField());
+
+                if (enough) {
+                    positionPaneController.getPayment3TextField().setStyle("-fx-background-color: #65ff00");
+                } else {
+                    positionPaneController.getPayment3TextField().setStyle("-fx-background-color: #ff321e");
+                }
             }
         });
 

@@ -77,20 +77,20 @@ public class FieldCalculate {
     }
 
     public boolean check(String[] pays, TextField points, TextField pay) {
-        int value = 0;
+        int allPoints = 0;
         int maxPoints = 0;
         try {
             maxPoints = parseToInt(points.getText());
             for (String l : pays) {
-                value =+ parseToInt(l);
-                System.out.println(maxPoints + "\t\t" + value);
+                allPoints += parseToInt(l);
+                System.out.println(maxPoints + "\t\t" + allPoints);
             }
         } catch (NumberFormatException e) {
             System.out.println("===");
         }
 
-        if ((maxPoints/2) > (value + parseToInt(pay.getText()))) {
-            System.out.println("=== > " + (maxPoints/2) + "   <   " + (value + parseToInt(pay.getText())));
+        if ((maxPoints - allPoints) > (2 * parseToInt(pay.getText())) - parseToInt(pay.getText())) {
+            System.out.println("=== > " + (maxPoints - allPoints) + "   <   " + (2 * parseToInt(pay.getText())));
             return false;
         } else {
             return true;

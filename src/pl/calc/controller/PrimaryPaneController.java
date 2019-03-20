@@ -106,14 +106,11 @@ public class PrimaryPaneController implements Initializable {
                         positionPaneController.getPayment1TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit1TextField(), profit);
 
-//                enough = calculate.checkPoints(positionPaneController.getPayment1TextField(),
-//                        positionPaneController.getPayment2TextField(),
-//                        positionPaneController.getPayment3TextField(),
-//                        positionPaneController.getPayment4TextField(),
-//                        positionPaneController.getPayment5TextField(),
-//                        bonusPaneController.getPaymentTextField());
+//                enough = calculate.check(pays,
+//                        bonusPaneController.getPointsTextField(),
+//                        positionPaneController.getPayment1TextField());   TODO source method
 
-                enough = calculate.check(pays,
+                enough = calculate.check(pays, pays[2],
                         bonusPaneController.getPointsTextField(),
                         positionPaneController.getPayment1TextField());
 
@@ -136,15 +133,15 @@ public class PrimaryPaneController implements Initializable {
                         positionPaneController.getPayment2TextField(), bonusPaneController.getBonusTextField(),true);
                 FieldCalculate.printTextField(positionPaneController.getProfit2TextField(), profit);
 
-                enough = calculate.check(pays,
-                        bonusPaneController.getPointsTextField(),
-                        positionPaneController.getPayment2TextField());
-
-                if (enough) {
-                    positionPaneController.getPayment2TextField().setStyle("-fx-background-color: #65ff00");
-                } else {
-                    positionPaneController.getPayment2TextField().setStyle("-fx-background-color: #ff321e");
-                }
+//                enough = calculate.check(pays,
+//                        bonusPaneController.getPointsTextField(),
+//                        positionPaneController.getPayment2TextField());
+//
+//                if (enough) {
+//                    positionPaneController.getPayment2TextField().setStyle("-fx-background-color: #65ff00");
+//                } else {
+//                    positionPaneController.getPayment2TextField().setStyle("-fx-background-color: #ff321e");
+//                }
             }
         });
 
@@ -158,15 +155,15 @@ public class PrimaryPaneController implements Initializable {
                         positionPaneController.getPayment3TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit3TextField(), profit);
 
-                enough = calculate.check(pays,
-                        bonusPaneController.getPointsTextField(),
-                        positionPaneController.getPayment3TextField());
-
-                if (enough) {
-                    positionPaneController.getPayment3TextField().setStyle("-fx-background-color: #65ff00");
-                } else {
-                    positionPaneController.getPayment3TextField().setStyle("-fx-background-color: #ff321e");
-                }
+//                enough = calculate.check(pays,
+//                        bonusPaneController.getPointsTextField(),
+//                        positionPaneController.getPayment3TextField());
+//
+//                if (enough) {
+//                    positionPaneController.getPayment3TextField().setStyle("-fx-background-color: #65ff00");
+//                } else {
+//                    positionPaneController.getPayment3TextField().setStyle("-fx-background-color: #ff321e");
+//                }
             }
         });
 
@@ -174,10 +171,21 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment4TextField());
+                pays[4] = positionPaneController.getPayment4TextField().getText();
 
                 String profit = calculate.bonusFactor(
                         positionPaneController.getPayment4TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit4TextField(), profit);
+
+//                enough = calculate.check(pays,
+//                        bonusPaneController.getPointsTextField(),
+//                        positionPaneController.getPayment4TextField());
+//
+//                if (enough) {
+//                    positionPaneController.getPayment4TextField().setStyle("-fx-background-color: #65ff00");
+//                } else {
+//                    positionPaneController.getPayment4TextField().setStyle("-fx-background-color: #ff321e");
+//                }
             }
         });
 
@@ -185,10 +193,21 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment5TextField());
+                pays[5] = positionPaneController.getPayment5TextField().getText();
 
                 String profit = calculate.bonusFactor(
                         positionPaneController.getPayment5TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit5TextField(), profit);
+
+//                enough = calculate.check(pays,
+//                        bonusPaneController.getPointsTextField(),
+//                        positionPaneController.getPayment5TextField());
+//
+//                if (enough) {
+//                    positionPaneController.getPayment5TextField().setStyle("-fx-background-color: #65ff00");
+//                } else {
+//                    positionPaneController.getPayment5TextField().setStyle("-fx-background-color: #ff321e");
+//                }
             }
         });
 
@@ -196,6 +215,7 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getRestTextField());
+                pays[0] = positionPaneController.getRestTextField().getText();
             }
         });
     }

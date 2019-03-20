@@ -76,25 +76,60 @@ public class FieldCalculate {
         return profit;
     }
 
-    public boolean check(String[] pays, TextField points, TextField pay) {
+//    public boolean check(String[] pays, TextField points, TextField pay) {
+//        int allPoints = 0;
+//        int maxPoints = 0;
+//        try {
+//            maxPoints = parseToInt(points.getText());
+//            for (String l : pays) {
+//                allPoints += parseToInt(l);
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("===");
+//        }
+//
+////        if ((maxPoints - allPoints) > (parseToInt(pay.getText()))) {
+////            return false;
+////        }             TODO:           OK !!!!!!!!!!!!!!!!!!!!!
+//
+//        try {
+//            for (int i = 1; i < pays.length; i++) {
+//                System.out.print("i = " + i + "   " +
+//                        parseToInt(pays[i]) + "   <   " + (parseToInt(pays[i + 1]) + (maxPoints - allPoints)));
+//                System.out.println("\t" + (parseToInt(pays[i]) < (parseToInt(pays[i + 1]) + (maxPoints - allPoints))));
+//                if (parseToInt(pays[i]) < ((parseToInt(pays[i + 1]) + (maxPoints - allPoints)))) {
+//                    System.out.println("N I E");
+//                }
+//            }
+//        } catch (ArrayIndexOutOfBoundsException e) {
+//            System.out.println(" eh...");
+//        }
+//
+//
+//
+//        return true;
+//    }
+
+    public boolean check(String[] pays, String nextPoints, TextField points, TextField pay) {
         int allPoints = 0;
         int maxPoints = 0;
         try {
             maxPoints = parseToInt(points.getText());
             for (String l : pays) {
                 allPoints += parseToInt(l);
-                System.out.println(maxPoints + "\t\t" + allPoints);
             }
         } catch (NumberFormatException e) {
-            System.out.println("===");
+            System.out.println("=================================================================================================");
+            e.printStackTrace();
+            System.out.println("=================================================================================================");
         }
 
-        if ((maxPoints - allPoints) > (2 * parseToInt(pay.getText())) - parseToInt(pay.getText())) {
-            System.out.println("=== > " + (maxPoints - allPoints) + "   <   " + (2 * parseToInt(pay.getText())));
+        if (parseToInt(pay.getText()) < (parseToInt(nextPoints) + (maxPoints - allPoints))) {
             return false;
-        } else {
-            return true;
         }
+
+
+        return true;
     }
 
     public static int parseToInt(String text) {

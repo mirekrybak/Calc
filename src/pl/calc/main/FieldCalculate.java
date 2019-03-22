@@ -51,27 +51,28 @@ public class FieldCalculate {
         return txt;
     }
 
-    public String factor19(TextField textField, String text) {
+    public String factor19(TextField textField) {
         String profit19 = String.valueOf(
-                val(text).multiply(val(textField.getText()))
+                val("1.9").multiply(val(textField.getText()))
                         .setScale(0, RoundingMode.HALF_UP));
         return profit19;
     }
 
-    public String bonusFactor(TextField payTextField, TextField bonusTextField, boolean positionPane) {
-        String profit;
+    public String bonusFactor(TextField payTextField, TextField bonusTextField) {
+        String profit = String.valueOf(
+                val(bonusTextField.getText())
+                        .multiply(val(payTextField.getText()))
+                        .setScale(0, RoundingMode.HALF_UP));
 
-        if (!positionPane) {
-            profit = String.valueOf(
-                    val(bonusTextField.getText()).multiply(val(payTextField.getText()))
-                            .setScale(0, RoundingMode.HALF_UP));
-        } else {
-            profit = String.valueOf(val(payTextField.getText())
+        return profit;
+    }
+
+    public String bonusFactor(TextField payTextField, TextField bonusTextField, boolean positionPane) {
+        String profit = String.valueOf(val(payTextField.getText())
                     .multiply(val(bonusTextField.getText()))
                     .divide(val("1.9"), RoundingMode.HALF_EVEN)
                     .setScale(0, RoundingMode.HALF_UP)
                     .subtract(val(payTextField.getText())));
-        }
 
         return profit;
     }

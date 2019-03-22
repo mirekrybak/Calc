@@ -106,10 +106,6 @@ public class PrimaryPaneController implements Initializable {
                         positionPaneController.getPayment1TextField(), bonusPaneController.getBonusTextField(), true);
                 FieldCalculate.printTextField(positionPaneController.getProfit1TextField(), profit);
 
-//                enough = calculate.check(pays,
-//                        bonusPaneController.getPointsTextField(),
-//                        positionPaneController.getPayment1TextField());   TODO source method
-
                 enough = calculate.check(pays,
                         positionPaneController.getPayment1TextField(),
                         //pays[2],

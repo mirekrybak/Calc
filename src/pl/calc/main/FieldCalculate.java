@@ -110,7 +110,26 @@ public class FieldCalculate {
 //        return true;
 //    }
 
-    public boolean check(String[] pays, String nextPoints, TextField points, TextField pay) {
+//    public boolean check(String[] pays, TextField pay, String nextPoints, TextField points) {
+//        int allPoints = 0;
+//        int maxPoints = 0;
+//        try {
+//            maxPoints = parseToInt(points.getText());
+//            for (String l : pays) {
+//                allPoints += parseToInt(l);
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("===");
+//        }
+//
+//        if (parseToInt(pay.getText()) < (parseToInt(nextPoints) + (maxPoints - allPoints))) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+
+    public boolean check(String[] pays, TextField pay, TextField nextPoints, TextField points) {
         int allPoints = 0;
         int maxPoints = 0;
         try {
@@ -119,15 +138,12 @@ public class FieldCalculate {
                 allPoints += parseToInt(l);
             }
         } catch (NumberFormatException e) {
-            System.out.println("=================================================================================================");
-            e.printStackTrace();
-            System.out.println("=================================================================================================");
+            System.out.println("===");
         }
 
-        if (parseToInt(pay.getText()) < (parseToInt(nextPoints) + (maxPoints - allPoints))) {
+        if (parseToInt(pay.getText()) < (parseToInt(nextPoints.getText()) + (maxPoints - allPoints))) {
             return false;
         }
-
 
         return true;
     }

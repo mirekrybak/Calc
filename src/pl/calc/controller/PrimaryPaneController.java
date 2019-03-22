@@ -46,9 +46,9 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.doubleValueVerify(bonusPaneController.getBonusTextField());
 
-                String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField(), "1.9");
+                String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField());
                 String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(),
-                        bonusPaneController.getBonusTextField(),false);
+                        bonusPaneController.getBonusTextField());
 
                 FieldCalculate.printTextField(bonusPaneController.getProfitTextField(), profit);
                 FieldCalculate.printTextField(bonusPaneController.getProfit19TextField(), profit19);
@@ -77,9 +77,9 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(bonusPaneController.getPaymentTextField());
 
-                String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField(), "1.9");
+                String profit19 = calculate.factor19(bonusPaneController.getPaymentTextField());
                 String profit = calculate.bonusFactor(bonusPaneController.getPaymentTextField(),
-                        bonusPaneController.getBonusTextField(), false);
+                        bonusPaneController.getBonusTextField());
 
                 FieldCalculate.printTextField(bonusPaneController.getProfitTextField(), profit);
                 FieldCalculate.printTextField(bonusPaneController.getProfit19TextField(), profit19);

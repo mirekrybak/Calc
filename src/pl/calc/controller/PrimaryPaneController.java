@@ -110,9 +110,13 @@ public class PrimaryPaneController implements Initializable {
 //                        bonusPaneController.getPointsTextField(),
 //                        positionPaneController.getPayment1TextField());   TODO source method
 
-                enough = calculate.check(pays, pays[2],
-                        bonusPaneController.getPointsTextField(),
-                        positionPaneController.getPayment1TextField());
+                enough = calculate.check(pays,
+                        positionPaneController.getPayment1TextField(),
+                        //pays[2],
+                        positionPaneController.getPayment2TextField(),
+                        bonusPaneController.getPointsTextField());
+
+                System.out.println("pays[2] = " + pays[2] + "\tgetPayment2TextField = " + positionPaneController.getPayment2TextField().getText());
 
                 if (enough) {
                     positionPaneController.getPayment1TextField().setStyle("-fx-background-color: #65ff00");

@@ -9,12 +9,6 @@ import java.util.regex.Pattern;
 
 public class FieldCalculate {
 
-    public static void printTextField(TextField textField, String text) {
-        textField.clear();
-        textField.setText(text);
-        textField.positionCaret(text.length());
-    }
-
     public void doubleValueVerify(TextField textField) {
         String text = textField.getText();                   //      range 1.0 - 1.999
         if (text.length() < 2) {
@@ -46,6 +40,12 @@ public class FieldCalculate {
         printTextField(textField, text);
     }
 
+    public static void printTextField(TextField textField, String text) {
+        textField.clear();
+        textField.setText(text);
+        textField.positionCaret(text.length());
+    }
+
     public static String trimLastChar(String text) {
         String txt = text.substring(0, text.length() - 1);
         return txt;
@@ -58,76 +58,70 @@ public class FieldCalculate {
         return profit19;
     }
 
-    public String bonusFactor(TextField payTextField, TextField bonusTextField, boolean positionPane) {
-        String profit;
+    public void factor(TextField paymentField, TextField profitField) {                         // 1.9 factor
+        String value = String.valueOf(
+                val(paymentField.getText())
+                        .multiply(val("1.9"))
+                        .setScale(0, RoundingMode.HALF_UP));
+        printTextField(profitField, value);
+    }
 
-        if (!positionPane) {
-            profit = String.valueOf(
-                    val(bonusTextField.getText()).multiply(val(payTextField.getText()))
-                            .setScale(0, RoundingMode.HALF_UP));
-        } else {
-            profit = String.valueOf(val(payTextField.getText())
+    public void factor(TextField paymentField, TextField bonusField, TextField profitField) {   // bonus factor
+        String value = String.valueOf(
+                val(paymentField.getText())
+                        .multiply(val(bonusField.getText()))
+                        .setScale(0, RoundingMode.HALF_UP));
+        printTextField(profitField, value);
+    }
+
+    public void factor(TextField paymentField, TextField bonusField, TextField profitField, boolean positionPane) {
+        String value = String.valueOf(
+                val(paymentField.getText()).
+                        multiply(val(bonusField.getText())).
+                        divide(val("1.9"), RoundingMode.HALF_EVEN).
+                        setScale(0,RoundingMode.HALF_UP).
+                        subtract(val(paymentField.getText())));
+        printTextField(profitField, value);
+    }
+    public String bonusFactor(TextField payTextField, TextField bonusTextField, boolean positionPane) {
+        String profit = String.valueOf(val(payTextField.getText())
                     .multiply(val(bonusTextField.getText()))
                     .divide(val("1.9"), RoundingMode.HALF_EVEN)
                     .setScale(0, RoundingMode.HALF_UP)
                     .subtract(val(payTextField.getText())));
-        }
-
         return profit;
     }
 
-//    public boolean check(String[] pays, TextField points, TextField pay) {
-//        int allPoints = 0;
-//        int maxPoints = 0;
-//        try {
-//            maxPoints = parseToInt(points.getText());
-//            for (String l : pays) {
-//                allPoints += parseToInt(l);
-//            }
-//        } catch (NumberFormatException e) {
-//            System.out.println("===");
-//        }
-//
-////        if ((maxPoints - allPoints) > (parseToInt(pay.getText()))) {
-////            return false;
-////        }             TODO:           OK !!!!!!!!!!!!!!!!!!!!!
-//
-//        try {
-//            for (int i = 1; i < pays.length; i++) {
-//                System.out.print("i = " + i + "   " +
-//                        parseToInt(pays[i]) + "   <   " + (parseToInt(pays[i + 1]) + (maxPoints - allPoints)));
-//                System.out.println("\t" + (parseToInt(pays[i]) < (parseToInt(pays[i + 1]) + (maxPoints - allPoints))));
-//                if (parseToInt(pays[i]) < ((parseToInt(pays[i + 1]) + (maxPoints - allPoints)))) {
-//                    System.out.println("N I E");
-//                }
-//            }
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            System.out.println(" eh...");
-//        }
-//
-//
-//
-//        return true;
-//    }
+    public String bonusFactor(TextField payTextField, TextField bonusTextField) {
+        String profit;
+        profit = String.valueOf(val(bonusTextField.getText())
+                .multiply(val(payTextField.getText()))
+                .setScale(0, RoundingMode.HALF_UP));
+        return profit;
+    }
 
-//    public boolean check(String[] pays, TextField pay, String nextPoints, TextField points) {
-//        int allPoints = 0;
-//        int maxPoints = 0;
-//        try {
-//            maxPoints = parseToInt(points.getText());
-//            for (String l : pays) {
-//                allPoints += parseToInt(l);
-//            }
-//        } catch (NumberFormatException e) {
-//            System.out.println("===");
-//        }
-//
-//        if (parseToInt(pay.getText()) < (parseToInt(nextPoints) + (maxPoints - allPoints))) {
-//            return false;
-//        }
-//
-//        return true;
-//    }
+    public void checkProvidedPosition(String[] pays, TextField pay, TextField nextPlace, TextField points) {
+        int allPoints = 0;
+        int maxPoints = 0;
+        try {
+            maxPoints = parseToInt(points.getText());
+            System.out.println("maxPoints = " + maxPoints);
+            for (String l : pays) {
+                allPoints += parseToInt(l);
+            }
+            System.out.println("allPoints = " + allPoints);
+        } catch (NumberFormatException e) {
+            // TODO
+        }
+
+        System.out.println("===> " + parseToInt(pay.getText()) + "   ===> " + (parseToInt(nextPlace.getText()) + maxPoints - allPoints));
+        System.out.println("===> " + (parseToInt(pay.getText()) < (parseToInt(nextPlace.getText()) + maxPoints - allPoints)));
+        if (parseToInt(pay.getText()) < (parseToInt(nextPlace.getText()) + maxPoints - allPoints)) {
+            pay.setStyle("-fx-background-color: #ff321e");
+        } else {
+            pay.setStyle("-fx-background-color: #65ff00");
+        }
+    }
 
     public boolean check(String[] pays, TextField pay, TextField nextPoints, TextField points) {
         int allPoints = 0;
@@ -138,12 +132,42 @@ public class FieldCalculate {
                 allPoints += parseToInt(l);
             }
         } catch (NumberFormatException e) {
-            System.out.println("===");
+            // TODO
         }
 
-        if (parseToInt(pay.getText()) < (parseToInt(nextPoints.getText()) + (maxPoints - allPoints))) {
+
+//      TODO    nextPoint = null;                           :/
+//        if (parseToInt(pay.getText()) < parseToInt(nextPoints.getText())) {
+//            String temp = pay.getText();
+//            pay.setText(nextPoints.getText());
+//            nextPoints.setText(temp);
+//
+//            System.out.println(pay.getText());
+//            System.out.println(nextPoints.getText());
+//        }
+//
+//        printTextField(pay, pay.getText());
+//        printTextField(nextPoints, nextPoints.getText());
+
+        if (parseToInt(pay.getText()) < (parseToInt(nextPoints.getText()) + maxPoints - allPoints)) {
             return false;
         }
+
+
+
+//        System.err.println((parseToInt(pay.getText()) + parseToInt(nextPoints.getText()) / 2)
+//                + " > "
+//                + (maxPoints-allPoints));
+//        if ((parseToInt(pay.getText()) + parseToInt(nextPoints.getText())) / 2 > (maxPoints - allPoints)) {
+//            return true;
+//        }
+
+//        if (parseToInt(pay.getText()) < (parseToInt(nextPoints.getText()) + (maxPoints - allPoints))) {
+//            //System.out.println(parseToInt(pay.getText()) + "   <   " + (parseToInt(nextPoints.getText()) + (maxPoints - allPoints)));
+//            return false;
+//        } else if (parseToInt(pay.getText()) >= (maxPoints - allPoints)) {      // TODO: ustalić warunek kiedy maxPoints -
+//            return true;
+//        }
 
         return true;
     }
@@ -160,10 +184,17 @@ public class FieldCalculate {
     }
 
     public static BigDecimal val(String text) {
+        BigDecimal txt = null;
         if (text.endsWith(".") || text.length() < 1) {
             text = text.concat("0");
         }
-        BigDecimal txt = new BigDecimal(text);
+
+        try {
+            txt = new BigDecimal(text);
+        } catch (NumberFormatException e) {
+            // TODO
+        }
+
         return txt;
     }
 }

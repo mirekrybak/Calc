@@ -81,6 +81,17 @@
                   <Insets right="7.0" />
                </padding>
             </Label>
+            <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="6">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <padding>
+                  <Insets right="7.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="14.0" />
+               </VBox.margin>
+            </Label>
          </children>
          <HBox.margin>
             <Insets left="5.0" right="5.0" />
@@ -122,7 +133,12 @@
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
             </TextField>
-            <TextField id="text-field-6" fx:id="restTextField" alignment="CENTER">
+            <TextField id="text-field-6" fx:id="payment6TextField" alignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField id="text-field-7" fx:id="restTextField" alignment="CENTER">
                <VBox.margin>
                   <Insets bottom="3.0" left="5.0" right="5.0" top="3.0" />
                </VBox.margin>
@@ -176,7 +192,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets top="7.0" />
+                  <Insets top="38.0" />
                </VBox.margin>
             </Label>
          </children>

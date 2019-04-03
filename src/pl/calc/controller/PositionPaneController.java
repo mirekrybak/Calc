@@ -21,6 +21,9 @@ public class PositionPaneController {
     private TextField payment5TextField;
 
     @FXML
+    private TextField payment6TextField;
+
+    @FXML
     private TextField restTextField;
 
     @FXML
@@ -58,6 +61,8 @@ public class PositionPaneController {
     public TextField getPayment5TextField() {
         return payment5TextField;
     }
+
+    public TextField getPayment6TextField() { return payment6TextField; }
 
     public TextField getRestTextField() {
         return restTextField;

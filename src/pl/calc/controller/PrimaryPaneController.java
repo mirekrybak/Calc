@@ -23,7 +23,7 @@ public class PrimaryPaneController implements Initializable {
     private Button exitButton;
 
     FieldCalculate calculate = new FieldCalculate();
-    String[] pays = new String[7];
+    String[] pays = new String[8];
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,6 +84,7 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(bonusPaneController.getPointsTextField());
+                pays[0] = bonusPaneController.getPointsTextField().getText();
             }
         });
 
@@ -92,14 +93,16 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment1TextField());
                 pays[1] = positionPaneController.getPayment1TextField().getText();
-
+                pays[1] = calculate.pointsVerify(pays,
+                                positionPaneController.getPayment1TextField(),
+                                bonusPaneController.getPointsTextField());
+                calculate.checkGuaranteedPosition(pays,
+                        positionPaneController.getPayment1TextField(),
+                        positionPaneController.getPayment2TextField()
+                );
                 calculate.factor(positionPaneController.getPayment1TextField(),
                         bonusPaneController.getBonusTextField(),
                         positionPaneController.getProfit1TextField(), true);
-                calculate.checkProvidedPosition(pays,
-                        positionPaneController.getPayment1TextField(),
-                        positionPaneController.getPayment2TextField(),
-                        bonusPaneController.getPointsTextField());
             }
         });
 
@@ -107,15 +110,18 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment2TextField());
-                pays[2] = positionPaneController.getPayment2TextField().getText();
 
+                pays[2] = positionPaneController.getPayment2TextField().getText();
+                pays[2] = calculate.pointsVerify(pays,
+                        positionPaneController.getPayment2TextField(),
+                        positionPaneController.getPayment1TextField());
+                calculate.checkGuaranteedPosition(pays,
+                        positionPaneController.getPayment2TextField(),
+                        positionPaneController.getPayment3TextField()
+                );
                 calculate.factor(positionPaneController.getPayment2TextField(),
                         bonusPaneController.getBonusTextField(),
                         positionPaneController.getProfit2TextField(), true);
-                calculate.checkProvidedPosition(pays,
-                        positionPaneController.getPayment2TextField(),
-                        positionPaneController.getPayment3TextField(),
-                        bonusPaneController.getPointsTextField());
             }
         });
 
@@ -124,14 +130,16 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment3TextField());
                 pays[3] = positionPaneController.getPayment3TextField().getText();
-
+                pays[3] = calculate.pointsVerify(pays,
+                        positionPaneController.getPayment3TextField(),
+                        positionPaneController.getPayment2TextField());
+                calculate.checkGuaranteedPosition(pays,
+                        positionPaneController.getPayment3TextField(),
+                        positionPaneController.getPayment4TextField()
+                );
                 calculate.factor(positionPaneController.getPayment3TextField(),
                         bonusPaneController.getBonusTextField(),
                         positionPaneController.getProfit3TextField(), true);
-                calculate.checkProvidedPosition(pays,
-                        positionPaneController.getPayment3TextField(),
-                        positionPaneController.getPayment4TextField(),
-                        bonusPaneController.getPointsTextField());
             }
         });
 
@@ -140,14 +148,16 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment4TextField());
                 pays[4] = positionPaneController.getPayment4TextField().getText();
-
+                pays[4] = calculate.pointsVerify(pays,
+                        positionPaneController.getPayment4TextField(),
+                        positionPaneController.getPayment3TextField());
+                calculate.checkGuaranteedPosition(pays,
+                        positionPaneController.getPayment4TextField(),
+                        positionPaneController.getPayment5TextField()
+                );
                 calculate.factor(positionPaneController.getPayment4TextField(),
                         bonusPaneController.getBonusTextField(),
                         positionPaneController.getProfit4TextField(), true);
-                calculate.checkProvidedPosition(pays,
-                        positionPaneController.getPayment4TextField(),
-                        positionPaneController.getPayment5TextField(),
-                        bonusPaneController.getPointsTextField());
             }
         });
 
@@ -156,22 +166,31 @@ public class PrimaryPaneController implements Initializable {
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getPayment5TextField());
                 pays[5] = positionPaneController.getPayment5TextField().getText();
-
+                pays[5] = calculate.pointsVerify(pays,
+                        positionPaneController.getPayment5TextField(),
+                        positionPaneController.getPayment4TextField());
+                calculate.checkGuaranteedPosition(pays,
+                        positionPaneController.getPayment5TextField(),
+                        positionPaneController.getPayment6TextField()
+                );
                 calculate.factor(positionPaneController.getPayment5TextField(),
                         bonusPaneController.getBonusTextField(),
                         positionPaneController.getProfit5TextField(), true);
-                calculate.checkProvidedPosition(pays,
-                        positionPaneController.getPayment5TextField(),
-                        positionPaneController.getPayment6TextField(),
-                        bonusPaneController.getPointsTextField());
             }
         });
 
         positionPaneController.getPayment6TextField().setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                 calculate.integerValueVerify(positionPaneController.getPayment6TextField());
-                 pays[6] = positionPaneController.getPayment6TextField().getText();
+                calculate.integerValueVerify(positionPaneController.getPayment6TextField());
+                pays[6] = positionPaneController.getPayment6TextField().getText();
+                pays[6] = calculate.pointsVerify(pays,
+                        positionPaneController.getPayment6TextField(),
+                        positionPaneController.getPayment5TextField());
+                calculate.checkGuaranteedPosition(pays,
+                        positionPaneController.getPayment6TextField(),
+                        positionPaneController.getRestTextField()
+                );
             }
         });
 
@@ -179,7 +198,10 @@ public class PrimaryPaneController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 calculate.integerValueVerify(positionPaneController.getRestTextField());
-                pays[0] = positionPaneController.getRestTextField().getText();
+                pays[7] = positionPaneController.getRestTextField().getText();
+                pays[7] = calculate.pointsVerify(pays,
+                        positionPaneController.getRestTextField(),
+                        positionPaneController.getPayment6TextField());
             }
         });
     }

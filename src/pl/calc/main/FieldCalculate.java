@@ -40,93 +40,105 @@ public class FieldCalculate {
         if (text.length() > 0 && (!matcher.matches() || text.length() > 6)) {
             text = trimLastChar(text);
         }
+        text = text.replace("-", "");
 
         printTextField(textField, text);
     }
 
-    public static void printTextField(TextField textField, String text) {
-        textField.clear();
-        textField.setText(text);
-        textField.positionCaret(text.length());
-    }
+    public String pointsVerify(String[] tab, TextField current, TextField previous) {
+        String value;
+        int payment = 0;
+        for (int i = 1; i < tab.length; i++) {
+            payment += parseToInt(tab[i]);
+        }
 
-    public static String trimLastChar(String text) {
-        String txt = text.substring(0, text.length() - 1);
-        return txt;
+        int left = parseToInt(tab[0]) - payment + parseToInt(current.getText());
+        //System.out.println("\t\tWpłacono: " + payment + "\tZostało: " + left);
+
+        //System.out.println("tab[0] - payment: " + (parseToInt(tab[0]) - payment));
+
+        if ((parseToInt(tab[0]) - payment) < 0) {
+            value = String.valueOf(left);
+            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        } else if (parseToInt(current.getText()) > parseToInt(previous.getText())) {
+            value = previous.getText();
+        } else if (parseToInt(current.getText()) > parseToInt(tab[0])) {
+            value = tab[0];
+        } else {
+            value = current.getText();
+        }
+
+        //System.out.println("\t\tValue = " + value);
+        printTextField(current, value);
+
+        return value;
     }
 
     //      factor 1.9
 
     public void factor(TextField paymentField, TextField profitField) {
-        String value = String.valueOf(
-                val(paymentField.getText())
-                        .multiply(val("1.9"))
-                        .setScale(0, RoundingMode.HALF_UP));
-        printTextField(profitField, value);
+        try {
+            String value = String.valueOf(
+                    parseToBigDecimal(paymentField.getText())
+                            .multiply(parseToBigDecimal("1.9"))
+                            .setScale(0, RoundingMode.HALF_UP));
+            printTextField(profitField, value);
+        } catch (NullPointerException e) {
+            //  e.printStackTrace();
+        }
     }
 
     //      bonus factor
 
     public void factor(TextField paymentField, TextField bonusField, TextField profitField) {
-        String value = String.valueOf(
-                val(paymentField.getText())
-                        .multiply(val(bonusField.getText()))
-                        .setScale(0, RoundingMode.HALF_UP));
-        printTextField(profitField, value);
+        try {
+            String value = String.valueOf(
+                    parseToBigDecimal(paymentField.getText())
+                            .multiply(parseToBigDecimal(bonusField.getText()))
+                            .setScale(0, RoundingMode.HALF_UP));
+            printTextField(profitField, value);
+        } catch (NullPointerException e) {
+            // e.printStackTrace();
+        }
     }
 
     //      profit (bonus - 1.9)
 
     public void factor(TextField paymentField, TextField bonusField, TextField profitField, boolean positionPane) {
-        String value = String.valueOf(
-                val(paymentField.getText()).
-                        multiply(val(bonusField.getText())).
-                        divide(val("1.9"), RoundingMode.HALF_EVEN).
-                        setScale(0, RoundingMode.HALF_UP).
-                        subtract(val(paymentField.getText())));
-        printTextField(profitField, value);
+        try {
+            String value = String.valueOf(
+                    parseToBigDecimal(paymentField.getText()).
+                            multiply(parseToBigDecimal(bonusField.getText())).
+                            divide(parseToBigDecimal("1.9"), RoundingMode.HALF_EVEN).
+                            setScale(0, RoundingMode.HALF_UP).
+                            subtract(parseToBigDecimal(paymentField.getText())));
+            printTextField(profitField, value);
+        } catch (NullPointerException e) {
+            // e.printStackTrace();
+        }
     }
 
-    public void checkProvidedPosition(String[] pays, TextField pay, TextField nextPlace, TextField points) {
+    public void checkGuaranteedPosition(String[] pays, TextField pay, TextField nextPlace) {
         int allPoints = 0;
-        int maxPoints = 0;
+        int maxPoints = parseToInt(pays[0]);
 
         try {
-            maxPoints = parseToInt(points.getText());
-            for (String l : pays) {
-                allPoints += parseToInt(l);
+            for (int i = 1; i < pays.length; i++) {
+                allPoints += parseToInt(pays[i]);
             }
         } catch (NumberFormatException e) {
             // TODO
         }
 
-        if (parseToInt(pay.getText()) < (parseToInt(nextPlace.getText()) + maxPoints - allPoints)) {
+        if ((parseToInt(pay.getText()) < (parseToInt(nextPlace.getText()) + maxPoints - allPoints)) ||
+                parseToInt(pay.getText()) == 0) {
             notEnough(pay);
         } else {
             enough(pay);
         }
     }
 
-    public static void notEnough(TextField colour) {
-        colour.setStyle("-fx-background-color: #ff321e");
-    }
-
-    public static void enough(TextField colour) {
-        colour.setStyle("-fx-background-color: #65ff00");
-    }
-
-    public static int parseToInt(String text) {
-        int value;
-        try {
-            value = Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            value = 0;
-        }
-
-        return value;
-    }
-
-    public static BigDecimal val(String text) {
+    private BigDecimal parseToBigDecimal(String text) {
         BigDecimal txt = null;
         if (text.endsWith(".") || text.length() < 1) {
             text = text.concat("0");
@@ -139,5 +151,35 @@ public class FieldCalculate {
         }
 
         return txt;
+    }
+
+    private void printTextField(TextField textField, String text) {
+        textField.clear();
+        textField.setText(text);
+        textField.positionCaret(text.length());
+    }
+
+    private String trimLastChar(String text) {
+        String txt = text.substring(0, text.length() - 1);
+        return txt;
+    }
+
+    private void notEnough(TextField colour) {
+        colour.setStyle("-fx-background-color: #ff321e");
+    }
+
+    private void enough(TextField colour) {
+        colour.setStyle("-fx-background-color: #65ff00");
+    }
+
+    private int parseToInt(String text) {
+        int value;
+        try {
+            value = Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            value = 0;
+        }
+
+        return value;
     }
 }

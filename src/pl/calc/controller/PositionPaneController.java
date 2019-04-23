@@ -68,9 +68,7 @@ public class PositionPaneController {
         return restTextField;
     }
 
-    public TextField getProfit1TextField() {
-        return profit1TextField;
-    }
+    public TextField getProfit1TextField() { return profit1TextField; }
 
     public TextField getProfit2TextField() {
         return profit2TextField;

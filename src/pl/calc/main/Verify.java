@@ -54,10 +54,10 @@ public class Verify {
 
         int left = parser.parseToInt(tab[0]) - payment + parser.parseToInt(current.getText());
 
-        if (parser.parseToInt(current.getText()) > parser.parseToInt(previous.getText())) {
-            value = previous.getText();
-        } else if ((parser.parseToInt(tab[0]) - payment) < 0) {
+        if ((parser.parseToInt(tab[0]) - payment) < 0) {
             value = String.valueOf(left);
+        } else if (parser.parseToInt(current.getText()) > parser.parseToInt(previous.getText())) {
+            value = previous.getText();
         } else if (parser.parseToInt(current.getText()) > parser.parseToInt(tab[0])) {
             value = tab[0];
         } else {
